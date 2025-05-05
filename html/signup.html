@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Synthetic Data Generation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Add any custom styles here */
+        body {
+            background-color: #111827; /* bg-gray-900 */
+            color: white;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+    <header class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold">MOSTLY·AI</a>
+        <nav class="hidden md:flex space-x-6 items-center">
+            <a href="#" class="hover:text-gray-400">Platform</a>
+            <a href="#" class="hover:text-gray-400">Use Cases</a>
+            <a href="#" class="hover:text-gray-400">Resources</a>
+            <a href="#" class="hover:text-gray-400">Company</a>
+            <a href="#" class="hover:text-gray-400">Pricing</a>
+            <a href="#" class="hover:text-gray-400">Docs</a>
+        </nav>
+        <div class="hidden md:flex items-center space-x-4">
+             <a href="login.html" class="text-white hover:text-gray-400">Log in</a>
+             <a href="signup.html" class="bg-white text-gray-900 px-4 py-2 rounded hover:bg-gray-200">Sign up</a>
+        </div>
+        <button class="md:hidden focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 flex justify-center">
+        <div class="w-full max-w-lg">
+            <h1 class="text-3xl font-bold mb-8 text-center">Create your account</h1>
+            <p class="text-center text-gray-400 mb-8">Get started with 5 free credits daily for synthetic data generation</p>
+            
+            <form class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="firstName" class="block text-gray-400 mb-2">First Name</label>
+                        <input type="text" id="firstName" name="firstName" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500 text-white" required>
+                    </div>
+                    <div>
+                        <label for="lastName" class="block text-gray-400 mb-2">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500 text-white" required>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="email" class="block text-gray-400 mb-2">Work Email</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500 text-white" placeholder="your@email.com" required>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="company" class="block text-gray-400 mb-2">Company</label>
+                    <input type="text" id="company" name="company" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500 text-white" required>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-400 mb-2">Password</label>
+                    <input type="password" id="password" name="password" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500 text-white" placeholder="Min. 8 characters" required>
+                    <p class="text-xs text-gray-500 mt-1">Password must be at least 8 characters and include a number and special character</p>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="confirmPassword" class="block text-gray-400 mb-2">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500 text-white" required>
+                </div>
+                
+                <div class="mb-6">
+                    <div class="flex items-start">
+                        <input type="checkbox" id="terms" name="terms" class="mt-1 mr-2" required>
+                        <label for="terms" class="text-gray-400 text-sm">I agree to the <a href="#" class="text-blue-500 hover:text-blue-400">Terms of Service</a> and <a href="#" class="text-blue-500 hover:text-blue-400">Privacy Policy</a></label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition duration-200">Create Account</button>
+                
+                <div class="mt-6 text-center text-gray-400">
+                    <p>Already have an account? <a href="login.html" class="text-blue-500 hover:text-blue-400">Log in</a></p>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html> 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | Synthify AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    {% include 'header.html' %}
+    
+    <main class="container mx-auto py-12 px-4">
+        <h1 class="text-4xl font-bold mb-8">Terms of Service</h1>
+        
+        <section class="bg-gray-800 p-8 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-6">1. Terms</h2>
+            <p class="text-gray-300 mb-4">By accessing this website, you are agreeing to be bound by these website Terms of Service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws.</p>
+            <p class="text-gray-300 mb-4">If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this website are protected by applicable copyright and trademark law.</p>
+        </section>
+
+        <section class="bg-gray-800 p-8 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-6">2. Use License</h2>
+            <p class="text-gray-300 mb-4">Permission is granted to temporarily download one copy of the materials on Synthify AI's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+            <ul class="list-disc pl-6 text-gray-300 mb-4 space-y-2">
+                <li>Modify or copy the materials</li>
+                <li>Use the materials for any commercial purpose or for any public display</li>
+                <li>Attempt to reverse engineer any software contained on Synthify AI's website</li>
+                <li>Remove any copyright or other proprietary notations from the materials</li>
+                <li>Transfer the materials to another person or "mirror" the materials on any other server</li>
+            </ul>
+        </section>
+
+        <section class="bg-gray-800 p-8 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-6">3. Disclaimer</h2>
+            <p class="text-gray-300 mb-4">The materials on Synthify AI's website are provided "as is". Synthify AI makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+            <p class="text-gray-300">Further, Synthify AI does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.</p>
+        </section>
+    </main>
+    
+    <footer class="bg-gray-800 text-gray-300 py-8 text-center mt-12">
+        <p>&copy; 2023 Synthify AI. All rights reserved.</p>
+    </footer>
+</body>
+</html> 

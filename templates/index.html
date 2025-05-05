@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthetic Data Generation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Add any custom styles here */
+        body {
+            background-color: #111827; /* bg-gray-900 */
+            color: white;
+            font-family: sans-serif;
+        }
+        
+        /* Responsive font sizes */
+        @media (max-width: 640px) {
+            .responsive-heading {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            .responsive-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col">
+
+    {% include 'header.html' %}
+
+    <main class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 flex-grow flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+            <h1 class="responsive-heading text-4xl sm:text-5xl font-bold mb-6 leading-tight">
+                Synthetic data generation for free forever, up to 5 credits per day
+            </h1>
+            <p class="responsive-text text-base sm:text-lg text-gray-400 mb-8">
+                The best AI-powered synthetic data generator is available free of charge for up to 5 credits daily. Generate high-quality, privacy-safe synthetic versions of your datasets for ML, advanced analytics, software testing and data sharing.
+            </p>
+            {% if not session.get('user_email') %}
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="{{ url_for('signup') }}" class="text-center bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition-colors">Sign up for free</a>
+                <a href="{{ url_for('login') }}" class="text-center border border-white text-white px-6 py-3 rounded hover:bg-gray-800 transition-colors">Log in</a>
+            </div>
+            {% else %}
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="{{ url_for('generate') }}" class="text-center bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition-colors">Generate Data</a>
+            </div>
+            {% endif %}
+        </div>
+        <div class="md:w-1/2 flex justify-center">
+            <!-- Synthetic data visualization image -->
+            <img src="{{ url_for('static', filename='images/synthetic-data-visualization.jpg') }}" alt="Synthetic Data Visualization" class="w-full h-auto rounded-lg shadow-lg">
+        </div>
+    </main>
+
+    <section class="container mx-auto px-4 sm:px-6 py-10">
+        <p class="text-center text-gray-500 mb-6">Trusted by leading Enterprises</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 justify-items-center opacity-50">
+             <div class="text-lg sm:text-xl font-semibold">Citi</div>
+             <div class="text-lg sm:text-xl font-semibold">City of Vienna</div>
+             <div class="text-lg sm:text-xl font-semibold">ERSTE</div>
+             <div class="text-lg sm:text-xl font-semibold">Merkur</div>
+             <div class="text-lg sm:text-xl font-semibold">Telefonica</div>
+        </div>
+    </section>
+
+    {% if error %}
+    <div class="fixed bottom-4 right-4 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg max-w-xs">
+        {{ error }}
+    </div>
+    {% endif %}
+    
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('menuBtn');
+            const closeMenuBtn = document.getElementById('closeMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            menuBtn.addEventListener('click', function() {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            closeMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.remove('flex');
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+            });
+        });
+    </script>
+</body>
+</html> 

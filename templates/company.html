@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company | Synthify AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    {% include 'header.html' %}
+    
+    <main class="container mx-auto py-12 px-4">
+        <h1 class="text-4xl font-bold mb-8">Company</h1>
+        
+        <section class="bg-gray-800 p-8 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-4">About Synthify AI</h2>
+            <p class="text-gray-300 mb-4">Synthify AI is a leading provider of synthetic data generation solutions. Our mission is to help businesses unlock the power of data while maintaining privacy and security.</p>
+            <p class="text-gray-300">We believe in making data accessible, enabling innovation, and protecting privacy through our advanced AI technologies.</p>
+        </section>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-3">Our Mission</h3>
+                <p class="text-gray-300">To democratize access to high-quality synthetic data generation for organizations of all sizes.</p>
+            </div>
+            
+            <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-3">Our Vision</h3>
+                <p class="text-gray-300">A world where data-driven innovation thrives without compromising privacy or security.</p>
+            </div>
+        </div>
+        
+        <section class="bg-gray-800 p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">Trusted by Leading Enterprises</h2>
+            <div class="flex flex-wrap justify-center gap-8 mt-6">
+                <div class="text-xl font-light text-gray-400">Citi</div>
+                <div class="text-xl font-light text-gray-400">City of Vienna</div>
+                <div class="text-xl font-light text-gray-400">ERSTE</div>
+                <div class="text-xl font-light text-gray-400">Merkur</div>
+                <div class="text-xl font-light text-gray-400">Telefonica</div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="bg-gray-800 text-gray-300 py-8 text-center mt-12">
+        <p>&copy; 2023 Synthify AI. All rights reserved.</p>
+    </footer>
+</body>
+</html> 

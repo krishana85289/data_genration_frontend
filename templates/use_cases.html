@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use Cases | Synthify AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    {% include 'header.html' %}
+    
+    <main class="container mx-auto py-12 px-4">
+        <h1 class="text-4xl font-bold mb-8">Use Cases</h1>
+        
+        <section class="bg-gray-800 p-8 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-4">Explore Our Use Cases</h2>
+            <p class="text-gray-300">Discover how Synthify AI can help solve your data challenges while maintaining privacy and security.</p>
+        </section>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-3">Machine Learning</h3>
+                <p class="text-gray-300 mb-4">Create synthetic datasets for training and testing machine learning models when real data is limited or contains sensitive information.</p>
+                <a href="#" class="text-blue-400 hover:text-blue-300">Learn more →</a>
+            </div>
+            
+            <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-3">Software Testing</h3>
+                <p class="text-gray-300 mb-4">Generate realistic test data that mimics production data without exposing sensitive customer information.</p>
+                <a href="#" class="text-blue-400 hover:text-blue-300">Learn more →</a>
+            </div>
+            
+            <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-3">Data Sharing</h3>
+                <p class="text-gray-300 mb-4">Share data with partners or researchers without compromising customer privacy or confidential information.</p>
+                <a href="#" class="text-blue-400 hover:text-blue-300">Learn more →</a>
+            </div>
+            
+            <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-3">Advanced Analytics</h3>
+                <p class="text-gray-300 mb-4">Enhance your analytics capabilities with high-quality synthetic data that preserves statistical properties of original datasets.</p>
+                <a href="#" class="text-blue-400 hover:text-blue-300">Learn more →</a>
+            </div>
+        </div>
+        
+        <section class="bg-gray-800 p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">Ready to Get Started?</h2>
+            <p class="text-gray-300 mb-6">Join thousands of companies using Synthify AI to solve their data challenges.</p>
+            <a href="{{ url_for('signup') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded transition-colors">Sign up for free</a>
+        </section>
+    </main>
+    
+    <footer class="bg-gray-800 text-gray-300 py-8 text-center mt-12">
+        <p>&copy; 2023 Synthify AI. All rights reserved.</p>
+    </footer>
+</body>
+</html> 

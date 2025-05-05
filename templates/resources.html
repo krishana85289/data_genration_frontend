@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources | Synthify AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    {% include 'header.html' %}
+    
+    <main class="container mx-auto py-12 px-4">
+        <h1 class="text-4xl font-bold mb-8">Resources</h1>
+        
+        <section class="bg-gray-800 p-8 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-4">Explore Our Resources</h2>
+            <p class="text-gray-300">Find various resources to help you get the most out of our application.</p>
+        </section>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-3">Documentation</h3>
+                <p class="text-gray-300 mb-4">Access our comprehensive guides and API documentation.</p>
+                <a href="{{ url_for('docs') }}" class="text-blue-400 hover:text-blue-300">Learn more →</a>
+            </div>
+            
+            <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-3">Tutorials</h3>
+                <p class="text-gray-300 mb-4">Step-by-step tutorials to help you make the most of Synthify AI.</p>
+                <a href="#" class="text-blue-400 hover:text-blue-300">View tutorials →</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="bg-gray-800 text-gray-300 py-8 text-center mt-12">
+        <p>&copy; 2023 Synthify AI. All rights reserved.</p>
+    </footer>
+</body>
+</html> 

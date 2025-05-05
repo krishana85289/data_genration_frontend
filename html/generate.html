@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Data - Synthify AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <header class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="text-2xl font-bold">Synthify AI</div>
+        <nav class="hidden md:flex space-x-6 items-center">
+            <a href="index.html" class="hover:text-gray-400">Home</a>
+            <a href="generate.html" class="font-semibold text-white">Generate Data</a>
+            <a href="#" class="hover:text-gray-400">Platform</a>
+            <a href="#" class="hover:text-gray-400">Use Cases</a>
+            <a href="#" class="hover:text-gray-400">Resources</a>
+            <a href="#" class="hover:text-gray-400">Company</a>
+            <a href="#" class="hover:text-gray-400">Pricing</a>
+            <a href="docs.html" class="hover:text-gray-400">Docs</a>
+        </nav>
+        <div class="hidden md:flex items-center space-x-4">
+             <a href="login.html" class="text-white hover:text-gray-400">Log in</a>
+             <a href="signup.html" class="bg-white text-gray-900 px-4 py-2 rounded hover:bg-gray-200">Sign up</a>
+        </div>
+        <button class="md:hidden focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <h1 class="text-4xl font-bold mb-8 text-center">Generate Synthetic Data</h1>
+        
+        <!-- Two-column layout for medium screens and up -->
+        <div class="md:grid md:grid-cols-3 md:gap-8">
+            
+            <!-- Left Column: File List -->
+            <section id="fileListSection" class="md:col-span-1 bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700 max-w-4xl mx-auto md:max-w-none h-fit mb-8 md:mb-0">
+                 <div class="flex justify-between items-center mb-4 border-b border-gray-700 pb-2">
+                    <h2 class="text-2xl font-semibold">Generated Files</h2>
+                    <button id="refreshFileListBtn" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded text-sm font-medium flex items-center space-x-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m-15.357-2a8.001 8.001 0 0015.357 2M15 15h-4.581" />
+                        </svg>
+                        <span>Refresh</span>
+                    </button>
+                </div>
+                <div class="bg-gray-900 p-4 rounded h-96 overflow-y-auto"> <!-- Added fixed height and scroll -->
+                    <ul id="fileList" class="space-y-2 text-sm">
+                        <!-- File list will be populated here -->
+                        <li class="text-gray-500">No files found or list not loaded yet.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Right Column: Form and Results -->
+            <div class="md:col-span-2 space-y-8">
+                
+                <form id="dataForm" class="space-y-8 max-w-4xl mx-auto md:max-w-none bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
+                    
+                    <!-- Combined Form Sections -->
+                    <div> 
+                        <!-- Define Columns Section -->
+                        <h2 class="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">Define Columns</h2>
+                        <div id="columnContainer" class="space-y-3 mb-3">
+                            <!-- Column Headers -->
+                            <div class="column-entry hidden md:flex items-center space-x-2 text-sm text-gray-400 px-2">
+                                <label class="w-1/2 font-medium">Column Name</label>
+                                <label class="w-1/2 font-medium">Data Type</label>
+                                <div class="w-10"></div> <!-- Spacer for remove button alignment -->
+                            </div>
+                            <!-- Initial column input -->
+                            <div class="column-entry flex flex-col md:flex-row items-stretch md:items-center space-y-2 md:space-y-0 md:space-x-2">
+                                <input type="text" name="columnName[]" placeholder="e.g., user_id" class="flex-grow p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                                <select name="columnType[]" class="flex-grow p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="string">String</option>
+                                    <option value="integer">Integer</option>
+                                    <option value="float">Float</option>
+                                    <option value="boolean">Boolean</option>
+                                    <option value="date">Date</option>
+                                </select>
+                                 <button type="button" class="remove-column-btn px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded opacity-50 cursor-not-allowed md:w-10 flex items-center justify-center" disabled title="Cannot remove the first row">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                      <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="button" id="addColumnBtn" class="mt-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded text-sm font-medium flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                              <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Add Column</span>
+                        </button>
+                    </div>
+
+                    <hr class="border-gray-700 my-6"> <!-- Optional: Add a subtle separator -->
+
+                    <!-- Provide Examples Section -->
+                    <div>
+                        <h2 class="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">Provide Examples (Optional)</h2>
+                         <p class="text-sm text-gray-400 mb-4">Give 1-3 examples of the data you want (comma-separated values matching columns above).</p>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="example1" class="block text-sm font-medium text-gray-300 mb-1">Example 1</label>
+                                <input type="text" id="example1" name="example1" placeholder="e.g., Alice, 30, Female, USA" class="mt-1 w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="example2" class="block text-sm font-medium text-gray-300 mb-1">Example 2</label>
+                                <input type="text" id="example2" name="example2" placeholder="e.g., Bob, 45, Male, Canada" class="mt-1 w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="example3" class="block text-sm font-medium text-gray-300 mb-1">Example 3</label>
+                                <input type="text" id="example3" name="example3" placeholder="e.g., Eva, 28, Female, Germany" class="mt-1 w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                    </div>
+
+                     <hr class="border-gray-700 my-6"> <!-- Optional: Add a subtle separator -->
+
+                     <!-- Generation Settings Section -->
+                     <div>
+                        <h2 class="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">Generation Settings</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
+                            <div class="md:col-span-4">
+                                <label for="query" class="block text-sm font-medium text-gray-300 mb-1">Generation Query</label>
+                                 <p class="text-xs text-gray-400 mb-2">Describe the data you want to generate based on the columns and examples.</p>
+                                <input type="text" id="query" name="query" value="Generate synthetic user profiles with similar attributes" class="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div class="md:col-span-1">
+                                <label for="num_records" class="block text-sm font-medium text-gray-300 mb-1">Number of Records</label>
+                                 <p class="text-xs text-gray-400 mb-2">How many rows?</p>
+                                <input type="number" id="num_records" name="num_records" value="10" min="1" class="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center pt-4">
+                         <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-semibold shadow-md transition duration-200 ease-in-out transform hover:-translate-y-1">Generate Data</button>
+                    </div>
+                    <!-- End Combined Form Sections -->
+                    
+                </form>
+
+                <!-- Results Accordion -->
+                <div id="resultCard" class="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700 max-w-4xl mx-auto md:max-w-none">
+                    <details id="resultDetails" class="group">
+                        <summary class="text-2xl font-semibold list-none cursor-pointer flex justify-between items-center group-open:border-b group-open:border-gray-700 group-open:pb-2 mb-2">
+                            <span>Generation Result</span>
+                            <!-- Optional: Add an icon for open/close state -->
+                            <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <div id="resultContent" class="mt-4 p-4 bg-gray-900 rounded max-h-96 overflow-y-auto text-sm font-mono">
+                            <!-- Result content will be populated here -->
+                            <span class="text-gray-500">Generated data will appear here...</span>
+                        </div>
+                    </details>
+                </div>
+                
+            </div> <!-- End Right Column -->
+
+        </div> <!-- End Two-column layout -->
+
+    </main>
+
+    <script src="../js/generate.js"></script>
+</body>
+</html> 

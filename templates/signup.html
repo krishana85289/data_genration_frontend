@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Synthetic Data Generation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Add any custom styles here */
+        body {
+            background-color: #111827; /* bg-gray-900 */
+            color: white;
+            font-family: sans-serif;
+        }
+        
+        /* Custom checkbox styles */
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding: 10px;
+            border: 2px solid #6B7280;
+            background-color: #374151;
+            border-radius: 4px;
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        input[type="checkbox"]:checked {
+            background-color: #3B82F6;
+            border-color: #3B82F6;
+        }
+        
+        input[type="checkbox"]:checked::after {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 2px;
+            width: 6px;
+            height: 12px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+        
+        input[type="checkbox"]:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col">
+
+    <header class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center sticky top-0 bg-gray-900 bg-opacity-95 z-10 backdrop-blur-sm border-b border-gray-800">
+        <a href="{{ url_for('index') }}" class="text-2xl font-bold">Synthify AI</a>
+        <nav class="hidden md:flex space-x-6 items-center">
+            <a href="{{ url_for('generate') }}" class="hover:text-gray-400 transition-colors">Generate Data</a>
+            <a href="{{ url_for('use_cases') }}" class="hover:text-gray-400 transition-colors">Use Cases</a>
+            <a href="{{ url_for('resources') }}" class="hover:text-gray-400 transition-colors">Resources</a>
+            <a href="{{ url_for('company') }}" class="hover:text-gray-400 transition-colors">Company</a>
+            <a href="{{ url_for('pricing') }}" class="hover:text-gray-400 transition-colors">Pricing</a>
+            <a href="{{ url_for('docs') }}" class="hover:text-gray-400 transition-colors">Docs</a>
+        </nav>
+        <div class="hidden md:flex items-center space-x-4">
+             <a href="{{ url_for('login') }}" class="text-white hover:text-gray-400 transition-colors">Log in</a>
+             <a href="{{ url_for('signup') }}" class="bg-white text-gray-900 px-4 py-2 rounded hover:bg-gray-200 transition-colors">Sign up</a>
+        </div>
+        
+        <!-- Mobile menu button -->
+        <button id="menuBtn" class="md:hidden focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+    </header>
+    
+    <!-- Mobile menu (hidden by default) -->
+    <div id="mobileMenu" class="fixed inset-0 bg-gray-900 bg-opacity-95 z-50 flex-col items-center justify-center py-8 px-4 hidden">
+        <div class="absolute top-4 right-4">
+            <button id="closeMenuBtn" class="focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <nav class="flex flex-col items-center space-y-6 text-xl mt-12">
+            <a href="{{ url_for('generate') }}" class="hover:text-blue-400 transition-colors">Generate Data</a>
+            <a href="{{ url_for('use_cases') }}" class="hover:text-blue-400 transition-colors">Use Cases</a>
+            <a href="{{ url_for('resources') }}" class="hover:text-blue-400 transition-colors">Resources</a>
+            <a href="{{ url_for('company') }}" class="hover:text-blue-400 transition-colors">Company</a>
+            <a href="{{ url_for('pricing') }}" class="hover:text-blue-400 transition-colors">Pricing</a>
+            <a href="{{ url_for('docs') }}" class="hover:text-blue-400 transition-colors">Docs</a>
+            <div class="pt-6 flex flex-col space-y-4 w-full items-center">
+                <a href="{{ url_for('login') }}" class="w-full max-w-xs text-center border border-white text-white px-6 py-3 rounded hover:bg-gray-800 transition-colors">Log in</a>
+                <a href="{{ url_for('signup') }}" class="w-full max-w-xs text-center bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition-colors">Sign up for free</a>
+            </div>
+        </nav>
+    </div>
+
+    <main class="container mx-auto px-4 sm:px-6 py-8 sm:py-12 flex-grow flex justify-center">
+        <div class="w-full max-w-lg">
+            <h1 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-8 text-center">Create your account</h1>
+            <p class="text-center text-gray-400 mb-6 sm:mb-8">Get started with 5 free credits daily for synthetic data generation</p>
+            
+            <form method="POST" action="{{ url_for('signup') }}" class="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6">
+                    <div>
+                        <label for="firstName" class="block text-gray-400 mb-2">First Name</label>
+                        <input type="text" id="firstName" name="firstName" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500 text-white" required>
+                    </div>
+                    <div>
+                        <label for="lastName" class="block text-gray-400 mb-2">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500 text-white" required>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="email" class="block text-gray-400 mb-2">Work Email</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500 text-white" placeholder="your@email.com" required>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="company" class="block text-gray-400 mb-2">Company</label>
+                    <input type="text" id="company" name="company" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500 text-white" required>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-400 mb-2">Password</label>
+                    <input type="password" id="password" name="password" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500 text-white" placeholder="Min. 8 characters" required>
+                    <p class="text-xs text-gray-500 mt-1">Password must be at least 8 characters and include a number and special character</p>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="confirmPassword" class="block text-gray-400 mb-2">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-blue-500 text-white" required>
+                </div>
+                
+                <div class="mb-6">
+                    <div class="flex items-center">
+                        <div class="relative flex items-start">
+                            <div class="flex items-center h-5">
+                                <input type="checkbox" id="terms" name="terms" class="w-5 h-5 text-blue-600 border-2 border-gray-500 rounded bg-gray-700 focus:ring-blue-500 focus:ring-2" required>
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="terms" class="text-gray-300">I agree to the <a href="{{ url_for('terms') }}" class="text-blue-500 hover:text-blue-400">Terms of Service</a> and <a href="{{ url_for('privacy') }}" class="text-blue-500 hover:text-blue-400">Privacy Policy</a></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition duration-200">Create Account</button>
+                
+                <div class="mt-6 text-center text-gray-400">
+                    <p>Already have an account? <a href="{{ url_for('login') }}" class="text-blue-500 hover:text-blue-400">Log in</a></p>
+                </div>
+            </form>
+            
+            {% if error %}
+            <div class="mt-4 p-3 bg-red-600 text-white rounded">
+                {{ error }}
+            </div>
+            {% endif %}
+        </div>
+    </main>
+    
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('menuBtn');
+            const closeMenuBtn = document.getElementById('closeMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const termsCheckbox = document.getElementById('terms');
+            const submitButton = document.querySelector('button[type="submit"]');
+            
+            // Mobile menu handlers
+            menuBtn.addEventListener('click', function() {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            closeMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.remove('flex');
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+            });
+            
+            // Ensure the checkbox is visible by adding a border
+            if (termsCheckbox) {
+                termsCheckbox.style.border = '2px solid #6B7280';
+                termsCheckbox.style.backgroundColor = '#374151';
+                
+                // Add a listener to validate the checkbox before submission
+                submitButton.addEventListener('click', function(e) {
+                    if (!termsCheckbox.checked) {
+                        e.preventDefault();
+                        alert('Please agree to the Terms of Service and Privacy Policy to continue.');
+                        termsCheckbox.focus();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
